@@ -1,20 +1,20 @@
-1ο ερώτημα:
+1Γ― Γ¥Γ±ΓΎΓ΄Γ§Γ¬Γ΅:
 MERGE(S:S.name,S.surname,S.class{(class:'Ekti-St'})
 RETURN S.class
 
-2ο ερώτημα:
+2Γ― Γ¥Γ±ΓΎΓ΄Γ§Γ¬Γ΅:
 MERGE(S:S.name,S.surname,S.absences{(absences:absences>=2})
 RETURN S.absences
 
-3ο ερώτημα:
+3Γ― Γ¥Γ±ΓΎΓ΄Γ§Γ¬Γ΅:
 MERGE(S:S.name,S.surname,S.absences{(absences:max(absences)},class:'Pempti-E')
 RETURN S.absences
 
-4ο ερώτημα:
+4Γ― Γ¥Γ±ΓΎΓ΄Γ§Γ¬Γ΅:
 MERGE(S:S.name,S.surname,S.grade{(grade:min(grade),class:'Ekti-St'})
 RETURN S.grade
 
-5ο ερώτημα:
-MERGE(T:T.name,T.surname,T.address{(address:'Diogenous 5'},ΟR{(address:'Sofouli 3'}),
-(S:S.name,S.surname,S.address{(address:'Diogenous 5'},ΟR{(address:'Sofouli 3'})
+5Γ― Γ¥Γ±ΓΎΓ΄Γ§Γ¬Γ΅:
+MERGE(T:T.name,T.surname,T.address{(address:'Diogenous 5'},ΓR{(address:'Sofouli 3'}),
+(S:S.name,S.surname,S.address{(address:'Diogenous 5'},ΓR{(address:'Sofouli 3'})
 RETURN T.address, T.address
