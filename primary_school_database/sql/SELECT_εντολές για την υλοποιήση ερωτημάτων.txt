@@ -1,0 +1,73 @@
+﻿Q1: SELECT S.name, S.surname,S.class
+FROM students S 
+WHERE S.class='Ekti-ST'
+
+Q2: SELECT S.name, S.surname,S.absences
+FROM students S 
+WHERE S.absences>=2
+
+Q3:
+SELECT T.name,T.surname,T.tid,C.course
+FROM teachers T, courses C, teacherscourses TC
+WHERE TC.cid=C.cid
+AND TC.tid=T.tid
+AND C.course='Mathimatika'
+Q4:
+SELECT S.name,S.surname,S.class,max(S.absences)as apousies
+FROM students S 
+GROUP BY S.class 
+
+Q5:
+SELECT T.tid as id, T.name,T.surname,T.specialty,T.workagr, AVG(T.workhours) ,C.course
+FROM teachers T, courses C,teacherscourses Tc
+WHERE  Tc.cid=C.cid
+AND Tc.tid=T.tid
+AND T.specialty='Daskalos'
+AND T.workagr='Monimos'
+GROUP BY  T.birthdate
+ORDER BY T.birthdate
+
+Q6:
+SELECT S.name,S.surname,S.class,C.course,GTC.grade 
+FROM students S,gradetab GT,gradetabcourse GTC,courses C 
+WHERE S.sid=GT.sid 
+AND GT.gtid=GTC.gtid 
+AND GTC.cid=C.cid 
+AND C.course='Glossa' AND GTC.grade BETWEEN 5 AND 10
+ORDER BY S.class,GTC.grade
+
+Q7:
+
+SELECT teachers.tid as id, name,surname,specialty, courses.course
+FROM ((teacherscourses
+INNER JOIN courses on teacherscourses.cid=courses.cid)
+INNER JOIN teachers on teacherscourses.tid=teachers.tid)
+ORDER BY id
+
+
+Q8:
+SELECT SH.hname as Aithousa ,C.course as Mathima,avg (GTC.grade) as MO 
+FROM studentschalls SH, courseschalls CH,gradetabcourse GTC, courses C  
+WHERE SH.hname = CH.hname 
+AND CH.cid=C.cid 
+AND C.cid=GTC.cid
+AND SH.hname='Aithousa A'
+AND C.course='Glossa'
+
+Q9:
+SELECT S.name,S.surname,S.class,min(GTC.grade)
+FROM students S , gradetabcourse GTC
+WHERE S.class='Ekti-ST' 
+
+
+Q10:
+
+SELECT T.tid,T.name,T.surname,T.address
+FROM teachers T
+WHERE (T.address='Sofouli 3' OR T.address='Diogenous 5')
+UNION 
+SELECT S.sid,S.name,S.surname,S.address
+FROM students S
+WHERE (S.address='Sofouli 3' OR S.address='Diogenous 5')
+
+

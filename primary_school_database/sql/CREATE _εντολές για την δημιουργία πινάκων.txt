@@ -1,0 +1,78 @@
+CREATE TABLE Teachers(                                                                                                              
+             tid int PRIMARY KEY NOT NULL,
+             name varchar(20) NOT NULL,
+             surname VARCHAR(20) NOT NULL,
+             birthdate date,
+             address varchar(20),
+             telephone varchar(10),
+             specialty varchar(20),
+             workagr varchar(20),
+             workhours int,
+             startdate date
+);
+
+CREATE TABLE Schoolhalls(
+            hname varchar(20) PRIMARY KEY  NOT NULL,
+            maxcapacity int
+); 
+CREATE TABLE Students(
+             sid int PRIMARY KEY  NOT NULL,
+             name varchar(20) NOT NULL,
+             surname varchar(20) NOT NULL,
+             fathername varchar(20) NOT NULL,
+             mothername varchar(20) NOT NULL,
+             birthdate date,
+             address varchar(20),
+             telephone varchar(10),
+             class varchar(15),
+             registrdate date,
+             absences int
+);
+
+CREATE TABLE Courses(
+             cid int PRIMARY KEY NOT NULL,
+             course varchar(20),
+             coursetype varchar(20)
+             
+);
+
+CREATE TABLE Gradetab(
+             gtid varchar(10) PRIMARY KEY  NOT NULL,
+             sid int NOT NULL,
+             FOREIGN KEY(sid) REFERENCES Students(sid)
+);
+CREATE TABLE TeachersSchoolhalls(
+             tid int NOT NULL,
+             hname varchar(20) NOT NULL,
+             FOREIGN KEY(tid) REFERENCES Teachers(tid),
+             FOREIGN KEY(hname) REFERENCES Schoolhalls(hname)
+);
+CREATE TABLE Teacherscourses(
+             tid int NULL,
+             cid int NOT NULL,
+             FOREIGN KEY(tid) REFERENCES Teachers(tid),
+             FOREIGN KEY(cid) REFERENCES Courses(cid)
+);
+
+
+CREATE TABLE StudentscHalls(
+             sid int NOT NULL,
+             hname varchar(20) NOT NULL,
+             FOREIGN KEY(sid) REFERENCES Students(sid),
+             FOREIGN KEY(hname) REFERENCES Schoolhalls(hname)
+);
+CREATE TABLE CoursescHalls(
+             cid int NOT NULL,
+             hname varchar(20) NOT NULL,
+             FOREIGN KEY(cid) REFERENCES Courses(cid),
+             FOREIGN KEY(hname) REFERENCES Schoolhalls(hname)
+);
+
+CREATE TABLE Gradetabcourse(
+             gtid varchar(10) NOT NULL,
+             cid int NOT NULL,
+             grade int NOT NULL,
+             FOREIGN KEY(gtid) REFERENCES Gradetab(gtid),
+             FOREIGN KEY(cid) REFERENCES Courses(cid),
+             CHECK(grade>=1 and grade<=10)
+);
