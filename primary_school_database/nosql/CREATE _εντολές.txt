@@ -1,0 +1,16 @@
+LOAD CSV FROM 'file:///students.csv'AS row RETURN count(row);
+LOAD CSV FROM 'file:///teachers.csv'AS row RETURN count(row);
+LOAD CSV FROM 'file:///courses.csv'AS row RETURN count(row);
+LOAD CSV FROM 'file:///schoolhalls.csv'AS row RETURN count(row);
+LOAD CSV FROM 'file:///courseschalls.csv'AS row RETURN count(row);
+LOAD CSV FROM 'file:///gradetab.csv'AS row RETURN count(row);
+LOAD CSV FROM 'file:///studentschalls.csv'AS row RETURN count(row);
+LOAD CSV FROM 'file:///teacherscourses.csv'AS row RETURN count(row);
+LOAD CSV FROM 'file:///teachersschoolhalls.csv'AS row RETURN count(row);
+LOAD CSV FROM 'file:///gradetabcourse.csv'AS row RETURN count(row);
+
+
+CREATE CONSTRAINT UniqueGradetab ON (gt:gradetab)ASSERT gt.gtid IS UNIQUE;
+CREATE CONSTRAINT UniqueGradetab ON (c:courses)ASSERT c.cid IS UNIQUE;
+CREATE CONSTRAINT UniqueGradetab ON (s:students)ASSERT s.sid IS UNIQUE;
+CREATE CONSTRAINT UniqueGradetab ON (t:teachers)ASSERT t.tid IS UNIQUE;
